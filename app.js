@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 
 // Add Candidate
-app.post('', (req, res) => {
+app.post('/add', (req, res) => {
 
     pool.getConnection((err, connection) => {
         if(err) throw err
@@ -58,7 +58,7 @@ app.post('', (req, res) => {
             console.log(err)
         }
         
-       
+        console.log('\n', rows)
 
         })
         console.log(req.body)
