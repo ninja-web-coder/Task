@@ -65,6 +65,29 @@ app.post('/add', (req, res) => {
     })
 });
 
+// Average score of candidates
+
+app.post('/avg', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        
+        const params = req.body;
+        
+        connection.query('SELECT AVG(first_round) AS avgscore from candidate_test_score ?', params, (err, rows) => {
+        connection.release() // return the connection to pool
+        if (!err) {
+            res.send(` average score.`)
+        } else {
+            console.log(err)
+        }
+        
+        console.log('\n', rows)
+
+        })
+        console.log(req.body)
+    })
+});
 
 
 
